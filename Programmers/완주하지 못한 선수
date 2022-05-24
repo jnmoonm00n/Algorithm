@@ -1,0 +1,28 @@
+import java.util.HashMap;
+
+class Solution {
+    public String solution(String[] participant, String[] completion) {
+        HashMap<String, Integer> map = new HashMap<>();
+        for (String name : completion) {
+            if (map.containsKey(name)) {
+                map.put(name, map.get(name) + 1);
+            } else {
+                map.put(name, 1);
+            }
+            //map.put(name, map.getOrDefault(name, 1), +1);
+        }
+
+        Integer cnt = 0;
+        String answer = "";
+        for (String name : participant) {
+            cnt = map.get(name);
+            if (cnt == null || cnt == 0) {
+                answer = name;
+                break;
+            }
+            map.put(name, map.get(name) - 1);
+        }
+
+        return answer;
+    }
+}
