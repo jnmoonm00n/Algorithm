@@ -1,0 +1,17 @@
+import java.util.*;
+
+class Solution {
+    public boolean solution(String[] phone_book) {
+        Arrays.sort(phone_book);
+        HashSet<String> set = new HashSet<>();
+        for (String num : phone_book) {
+            for (int lgth = 1; lgth < num.length(); lgth++) {
+                if (set.contains(num.substring(0, lgth))) {
+                    return false;
+                }
+            }
+            set.add(num);
+        }
+        return true;
+    }
+}
