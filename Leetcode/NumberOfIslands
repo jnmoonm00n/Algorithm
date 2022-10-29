@@ -1,0 +1,28 @@
+class Solution {
+    private char[][] grid;
+    
+    public int numIslands(char[][] grid) {
+        int num = 0;
+        this.grid = grid;
+        
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j] == '1') num++;
+                removeAround(i, j);
+            }
+        }
+        
+        return num;
+    }
+    
+    private void removeAround(int i, int j) {
+        if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length || grid[i][j] == '0') return;
+                
+        grid[i][j] = '0';
+        
+        removeAround(i-1, j); // top
+        removeAround(i+1, j); // bottom
+        removeAround(i, j-1); // left
+        removeAround(i, j+1); // right
+    }
+}
